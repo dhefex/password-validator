@@ -10,6 +10,10 @@ export function verify(req, res){
 
     const errors = []
 
+    if (!hasMinLength){
+        errors.push("Password must be at least 8 characters long")
+    }
+
     if (!hasLowerCase)  {
         errors.push("Password must contain at least one lowercase letter")
   
@@ -30,8 +34,8 @@ export function verify(req, res){
         
     }
 
-    if (password.length <= 8) {
-        return res.status(400).json({errors})
+    if (errors.length > 0) {
+        return res.status(400).json({errors})   
         
     }
 
